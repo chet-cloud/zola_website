@@ -1,0 +1,16 @@
+{%- import "macros/macros.html" as macros %}
+
+{{  macros::info() }}
+
+{%- for page in paginator.pages %}
+    <article>
+        <h2>{{page.title}}</h2>
+        <p>
+            {{ page.content | striptags | truncate(length=150) | safe }}
+            <a href="{{ page.permalink | safe }}">...more</a>
+        </p>
+    </article>
+{%- endfor %}
+
+
+{{- macros::pagination(paginator=paginator) }}

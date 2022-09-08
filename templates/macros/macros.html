@@ -1,0 +1,635 @@
+{%- macro title_post(page) %}
+        <h1><a href="{{ page.permalink | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ page.title }}</a></h1>
+{%- endmacro title_post %}
+
+{%- macro meta_post(page) %}
+        <span{%- if config.extra.meta_post.size %} class="{{ config.extra.meta_post.size }}"{% endif %}>
+
+        {#- Author #}
+        {%- if page.taxonomies.authors and config.taxonomies %}
+          {%- for author in page.taxonomies.authors %}
+          {%- if author_flag %} and {% endif %}
+          <a href="{{ get_taxonomy_url(kind='authors', name=author) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ author }}</a>
+          {%- set_global author_flag = true %}
+          {%- endfor %}
+        {%- elif config.extra.author and config.extra.meta_post.author %}
+          {%- if config.extra.icon_author %}<i class="{{ config.extra.icon_author }}"></i> {% endif %} {{ config.extra.author }}
+        {%- endif %}
+
+          {#- divider #}
+          {%- if config.extra.meta_post.author %}
+          {%- if config.extra.meta_post.readtime or config.extra.meta_post.date or config.extra.meta_post.categories_tags %}
+          {%- if config.extra.meta_post.divider %}<span class="hpad">{{ config.extra.meta_post.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}
+          {%- endif %}
+          {%- endif %}
+
+        {#- ReadTime #}
+          {%- if config.extra.meta_post.readtime %} {%- if config.extra.icon_read %}<i class="{{ config.extra.icon_read }}"></i> {% endif %} {{ page.reading_time }} {{ config.extra.meta_post.readstring | default(value="min") }}
+          {#- divider #}
+          {%- if config.extra.meta_post.date or config.extra.meta_post.categories_tags %}
+          {%- if config.extra.meta_post.divider %}<span class="hpad">{{ config.extra.meta_post.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}{%- endif %}{%- endif %}
+
+        {#- Date #}
+          {%- if config.extra.meta_post.date %} {%- if config.extra.icon_date %}<i class="{{ config.extra.icon_date }}"></i> {% endif %} {{ page.date | date(format="%B %d, %Y") }}
+          {#- divider #}
+          {%- if config.extra.meta_post.categories_tags %}
+          {%- if config.extra.meta_post.divider %}<span class="hpad">{{ config.extra.meta_post.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}{%- endif %}{% endif %}
+
+        {#- Categories #}
+          {%- if page.taxonomies.categories %} {%- if config.extra.icon_info %}<i class="{{ config.extra.icon_info }}"></i> {% endif %} [{% for cat in page.taxonomies.categories %}<a href="{{ get_taxonomy_url(kind='categories', name=cat) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ cat }}</a>{% endfor %}]{% endif %}
+
+        {#- Tags #}
+          {%- if page.taxonomies.tags %} {%- for tag in page.taxonomies.tags %} #<a href="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ tag }}</a> {% endfor -%}{%- endif %}</span>
+{%- endmacro meta_post %}
+
+{%- macro title_index(page) %}
+        <h1>{% if config.extra.title_size_index %}<span class="{{ config.extra.title_size_index }}">{% endif %}<a href="{{ page.permalink | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ page.title }}</a>{% if config.extra.title_size_index %}</span>{% endif %}</h1>
+{%- endmacro title_index %}
+
+
+{%- macro meta_index(page) %}
+        <span{%- if config.extra.meta_index.size %} class="{{ config.extra.meta_index.size }}"{% endif %}>
+
+        {#- Author #}
+        {%- if page.taxonomies.authors and config.taxonomies %}
+          {%- for author in page.taxonomies.authors %}
+          {%- if author_flag %} and {% endif %}
+          <a href="{{ get_taxonomy_url(kind='authors', name=author) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ author }}</a>
+          {%- set_global author_flag = true %}
+          {%- endfor %}
+        {%- elif config.extra.author and config.extra.meta_index.author %}
+          {%- if config.extra.icon_author %}<i class="{{ config.extra.icon_author }}"></i> {% endif %} {{ config.extra.author }}
+        {%- endif %}
+
+          {#- divider #}
+          {%- if config.extra.meta_index.author %}
+          {%- if config.extra.meta_index.readtime or config.extra.meta_index.date or config.extra.meta_index.categories_tags %}
+          {%- if config.extra.meta_index.divider %}<span class="hpad">{{ config.extra.meta_index.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}
+          {%- endif %}
+          {%- endif %}
+
+        {#- ReadTime #}
+          {%- if config.extra.meta_index.readtime %} {%- if config.extra.icon_read %}<i class="{{ config.extra.icon_read }}"></i> {% endif %} {{ page.reading_time }} {{ config.extra.meta_index.readstring | default(value="min") }}
+          {#- divider #}
+          {%- if config.extra.meta_index.date or config.extra.meta_index.categories_tags %}
+          {%- if config.extra.meta_index.divider %}<span class="hpad">{{ config.extra.meta_index.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}{%- endif %}{%- endif %}
+
+        {#- Date #}
+          {%- if config.extra.meta_index.date %} {%- if config.extra.icon_date %}<i class="{{ config.extra.icon_date }}"></i> {% endif %} {{ page.date | date(format="%B %d, %Y") }}
+          {#- divider #}
+          {%- if config.extra.meta_index.categories_tags %}
+          {%- if config.extra.meta_index.divider %}<span class="hpad">{{ config.extra.meta_index.divider | safe }}</span>{%- else %} &nbsp; {%- endif %}{%- endif %}{% endif %}
+
+        {#- Categories #}
+          {%- if page.taxonomies.categories %} {%- if config.extra.icon_info %}<i class="{{ config.extra.icon_info }}"></i> {% endif %} [{% for cat in page.taxonomies.categories %}<a href="{{ get_taxonomy_url(kind='categories', name=cat) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ cat }}</a>{% endfor %}]{% endif %}
+
+        {#- Tags #}
+          {%- if page.taxonomies.tags %} {%- for tag in page.taxonomies.tags %} #<a href="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ tag }}</a> {% endfor -%}{%- endif %}</span>
+{%- endmacro meta_index %}
+
+
+
+
+{%- macro footer(page) %}
+{%- if page.reading_time %}
+{%- if page.reading_time > 1 %}
+<p><b><a href="#">Back to top</a></b></p>
+{%- endif %}
+{%- endif %}
+{%- endmacro footer %}
+
+
+
+
+
+
+
+
+
+
+
+
+{%- macro pagination(paginator)%}
+  {%- if paginator.number_pagers > 1 %}
+            {%- if paginator.number_pagers <= 5 %}  {# 5 or less pager is simple, just display all 5 #}
+                {%- set start = 1 %}
+                {%- set end = paginator.number_pagers %}
+            {%- endif %}
+
+            {%- if paginator.number_pagers > 5 %}
+
+                {%- if paginator.current_index >= 3 %}                {# Check if the first number will be 1 or not #}
+                    {%- set start = paginator.current_index - 2 %}    {# Set the start number #}
+                    {%- if paginator.number_pagers - paginator.current_index < 2 %}  {# the last two pages your no longer centered with equal pages start and end #}
+                        {%- set difference = paginator.number_pagers - paginator.current_index %}
+                        {%- set compensation =  1 - difference %}
+                        {%- set start = paginator.current_index - 3 - compensation %}  {# however many pages are missing on the end, add offset to start #}
+                    {%- endif %}
+                {%- else %}
+                    {%- set start = 1 %}
+                {%- endif %}
+
+                {%- if paginator.number_pagers >= paginator.current_index + 2 %}  {# Check if the last page is beyond our range #}
+                    {%- set end = paginator.current_index + 2 %}  {# End is beyond our range so we can safely set it to our range #}
+                    {%- if paginator.current_index <= 3 %}  {# check offset start, if on page 1 or 2 then set the end to page 5 #}
+                        {%- set end = 5 %}
+                    {%- endif %}
+                {%- else %}
+                    {%- set end = paginator.number_pagers %}
+                {%- endif %}
+            {%- endif %}
+      <nav>
+        <ul>
+        {%- if paginator.previous -%}
+          <li><a class="on outp" href="{{ paginator.first | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}" title="First Page">
+            First Page
+          </a></li>
+        {%- else -%}
+          <li><span class="off outp">
+
+          </span></li>
+        {%- endif -%}
+
+        {%- if paginator.previous -%}
+          <li><a class="on outp" href="{{ paginator.previous | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}" title="Previous Page">
+            Previous Page
+          </a></li>
+        {%- else -%}
+          <li><span class="off outp">
+
+          </span></li>
+        {%- endif -%}
+
+        {%- for i in range(start=start, end=end+1) -%}
+          <li class="inp">
+            {%- if i == paginator.current_index -%}
+            <a class="on cnav" href="#">{{i}}</a>
+            {%- elif i > 1 -%}
+            <a class="on" href="{{ paginator.base_url | safe }}{{ i ~ '/' }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{i}}</a>
+            {%- else -%}
+            <a class="on" href="{{ paginator.first | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}">{{ i }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+
+        {%- if paginator.next -%}
+          <li><a class="on outp" href="{{ paginator.next | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}" title="Next Page">
+            Next Page
+          </a></li>
+        {%- else -%}
+          <li><span class="off outp">
+
+          </span></li>
+        {%- endif -%}
+
+        {%- if paginator.next -%}
+          <li><a class="on outp" href="{{ paginator.last | safe }}{%- if config.extra.uglyurls %}index.html{%- endif %}" title="Last Page">
+            Last Page
+          </a></li>
+        {%- else -%}
+          <li><span class="off outp">
+
+          </span></li>
+        {%- endif -%}
+        </ul>
+      </nav>
+  {%- endif %}
+{%- endmacro %}
+
+
+
+{%- macro info()%}
+
+<table>
+  <style>
+      table, th, td {
+        border:1px solid black;
+      }
+  </style>
+  <tr>
+    <th>website_name</th>
+    <th>website_value</th>
+  </tr>
+  <tr>
+    <td>config</td>
+    <td>{{config | json_encode(pretty=true) | safe }}</td>
+  </tr>
+
+
+  <tr>
+    <td>config.taxonomies</td>
+    <td>
+      {%- for taxonomy in config.taxonomies %}
+        <ul>
+          <li>taxonomy.name: {{taxonomy.name}}</li>
+          <li>taxonomy.slug: {{taxonomy.slug}}</li>
+          <li>taxonomy.paginate_path: {{taxonomy.paginate_path}}</li>
+          <li>taxonomy.paginate_by: {{taxonomy.paginate_by}}</li>
+          <li>taxonomy.render: {{taxonomy.render}}</li>
+          <li>taxonomy.feed: {{taxonomy.feed}}</li>
+        </ul>
+      {% endfor %}
+    </td>
+  </tr>
+
+  <tr>
+    <td>current_url</td>
+    <td>{{current_url}}</td>
+  </tr>
+  <tr>
+    <td>current_path</td>
+    <td>{{current_path}}</td>
+  </tr>
+  <tr>
+    <td>lang</td>
+    <td>{{lang}}</td>
+  </tr>
+
+  {%- if taxonomy -%}
+    <tr>
+      <td>taxonomy: TaxonomyConfig;</td>
+      <td>{{taxonomy | json_encode(pretty=true) | safe }}</td>
+    </tr>
+  {% endif %}
+
+  {%- if terms -%}
+    <tr>
+      <td>terms: Array[TaxonomyTerm]</td>
+      <td>
+        {%- for term in terms %}
+          <ul>
+            <li>term.name: {{term.name}}</li>
+            <li>term.slug: {{term.slug}}</li>
+            <li>term.path: {{term.path}}</li>
+            <li>term.permalink: {{term.permalink}}</li>
+            <li>term.pages[slug]--->
+              {%- for page in term.pages %}
+                [{{page.slug}}]
+              {% endfor %}
+            </li>
+          </ul>
+        {% endfor %}
+      </td>
+    </tr>
+  {% endif %}
+
+  {%- if term -%}
+    <tr>
+      <td>term: TaxonomyTerm;</td>
+      <td> 
+        <ul>
+          <li>term.name: {{term.name}}</li>
+          <li>term.slug: {{term.slug}}</li>
+          <li>term.path: {{term.path}}</li>
+          <li>term.permalink: {{term.permalink}}</li>
+          <li>term.pages[slug]--->
+            {%- for page in term.pages %}
+              [{{page.slug}}]
+            {% endfor %}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  {% endif %}
+
+</table>    
+
+    {%- if page -%}
+      <table>
+        <style>
+            table, th, td {
+              border:1px solid black;
+            }
+        </style>
+        <tr>
+          <th>page_name</th>
+          <th>page_value</th>
+        </tr>
+        <tr>
+          <td>page.content</td>
+          <td>{{page.content}}</td>
+        </tr>
+        <tr>
+            <td>page.title</td>
+            <td>{{page.title}}</td>
+          </tr>
+          <tr>
+            <td>page.description</td>
+            <td>{{page.description}}</td>
+          </tr>
+          <tr>
+            <td>page.date</td>
+            <td>{{page.date}}</td>
+          </tr>
+          <tr>
+            <td>page.updated</td>
+            <td>{{page.updated}}</td>
+          </tr>
+          <tr>
+            <td>page.slug</td>
+            <td>{{page.slug}}</td>
+          </tr>
+          <tr>
+            <td>page.path</td>
+            <td>{{page.path}}</td>
+          </tr>
+          <tr>
+            <td>page.permalink</td>
+            <td>{{page.permalink}}</td>
+          </tr>
+          <tr>
+            <td>page.draft</td>
+            <td>{{page.draft}}</td>
+          </tr>
+          <tr>
+            <td>page.components: Array[String]</td>
+            <td>
+                <div>
+                    {%- for component in page.components %}
+                        <span>[{{component}}]</span>
+                    {% endfor %}
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>page.permalink</td>
+            <td>{{page.permalink}}</td>
+          </tr>
+          <tr>
+            <td>page.summary</td>
+            <td>{{page.summary}}</td>
+          </tr>
+          <tr>
+            <td>page.taxonomies: HashMap[String, Array[String]]</td>
+            <td>
+                <div>
+                    {%- for key, value in page.taxonomies %}
+                        <span>{{key}}--->: </span>
+                        {%- for v in value %}
+                            <span>[{{v}}]</span>
+                        {% endfor %}
+                        <br>
+                    {% endfor %}
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>page.extra: HashMap[String, Any]</td>
+            <td>
+                {{page.extra | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+          <tr>
+            <td>page.word_count</td>
+            <td>{{page.word_count}}</td>
+          </tr>
+          <tr>
+            <td>page.reading_time</td>
+            <td>{{page.reading_time}}</td>
+          </tr>
+          <tr>
+            <td>page.lower</td>
+            <td>
+                {% if page.lower.permalink %} 
+                  {{page.lower.permalink}}
+                {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>page.higher</td>
+            <td>
+              {% if page.higher.permalink %} 
+                {{page.higher.permalink}}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>page.year</td>
+            <td>{{page.year}}</td>
+          </tr>
+          <tr>
+            <td>page.month</td>
+            <td>{{page.month}}</td>
+          </tr>
+          <tr>
+            <td>page.day</td>
+            <td>{{page.day}}</td>
+          </tr>
+          <tr>
+            <td>page.assets: Array[String]</td>
+            <td>
+                {%- for value in page.assets %}
+                [{{value}}]
+                {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>page.ancestors: Array[String]</td>
+            <td>
+                {%- for value in page.ancestors %}
+                [{{value}}]
+                {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>page.relative_path</td>
+            <td>{{page.relative_path}}</td>
+          </tr>
+          <tr>
+            <td>page.lang</td>
+            <td>{{page.lang}}</td>
+          </tr>
+          <tr>
+            <td>page.backlinks: Array[{permalink: String, title: String?}]</td>
+            <td>
+                {{page.backlinks | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+          <tr>
+            <td>page.toc: Table of contents </td>
+            <td>
+                {{page.toc | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+      </table>
+    {%- endif -%}
+
+    {%- if section -%}
+      <table>
+        <style>
+            table, th, td {
+              border:1px solid black;
+            }
+        </style>
+        <tr>
+          <th>section_name</th>
+          <th>section_value</th>
+        </tr>
+        <tr>
+          <td>section.content</td>
+          <td>{{section.content}}</td>
+        </tr>
+        <tr>
+            <td>section.title</td>
+            <td>{{section.title}}</td>
+          </tr>
+          <tr>
+            <td>section.description</td>
+            <td>{{section.description}}</td>
+          </tr>
+          <tr>
+            <td>section.path</td>
+            <td>{{section.path}}</td>
+          </tr>
+          <tr>
+            <td>section.permalink</td>
+            <td>{{section.permalink}}</td>
+          </tr>
+          <tr>
+            <td>section.draft</td>
+            <td>{{section.draft}}</td>
+          </tr>
+          <tr>
+            <td>section.components: Array[String]</td>
+            <td>
+                <div>
+                    {%- for component in section.components %}
+                        <span>[{{component}}]</span>
+                    {% endfor %}
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>section.permalink</td>
+            <td>{{section.permalink}}</td>
+          </tr>
+          <tr>
+            <td>section.extra: HashMap[String, Any]</td>
+            <td>
+                {{section.extra | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+          <tr>
+            <td>section.word_count</td>
+            <td>{{section.word_count}}</td>
+          </tr>
+          <tr>
+            <td>section.reading_time</td>
+            <td>{{section.reading_time}}</td>
+          </tr>
+          <tr>
+            <td>section.assets: Array[String]</td>
+            <td>
+                {%- for value in section.assets %}
+                [{{value}}]
+                {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>section.ancestors: Array[String]</td>
+            <td>
+                {%- for value in section.ancestors %}
+                [{{value}}]
+                {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>section.relative_path</td>
+            <td>{{section.relative_path}}</td>
+          </tr>
+          <tr>
+            <td>section.lang</td>
+            <td>{{section.lang}}</td>
+          </tr>
+          <tr>
+            <td>section.backlinks: Array[{permalink: String, title: String?}]</td>
+            <td>
+                {{section.backlinks | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+          <tr>
+            <td>section.toc: Table of contents </td>
+            <td>
+                {{section.toc | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+      
+          <tr>
+            <td>section.pages: Array[Page]</td>
+            <td>
+                {{section.pages | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+      
+          <tr>
+            <td>section.subsections: Array[String] </td>
+            <td>
+                {{section.subsections | json_encode(pretty=true) | safe }}
+            </td>
+          </tr>
+      
+      </table>
+    {%- endif -%}
+
+    {%- if paginator -%}
+      <table>
+        <style>
+            table, th, td {
+              border:1px solid black;
+            }
+        </style>
+        <tr>
+          <th>paginator_name</th>
+          <th>paginator_value</th>
+        </tr>
+        <tr>
+          <td> paginator.paginate_by </td>
+          <td>{{paginator.paginate_by}}</td>
+        </tr>
+        <tr>
+          <td> paginator.base_url</td>
+          <td>{{paginator.base_url}}</td>
+        </tr>
+        <tr>
+          <td> paginator.number_pagers</td>
+          <td>{{ paginator.number_pagers}}</td>
+        </tr>
+        <tr>
+          <td>paginator.first</td>
+          <td>{{paginator.first }}</td>
+        </tr>
+        <tr>
+          <td> paginator.last</td>
+          <td>{{ paginator.last}}</td>
+        </tr>
+        <tr>
+          <td>paginator.previous </td>
+          <td>{{paginator.previous }}</td>
+        </tr>
+        <tr>
+          <td> paginator.next</td>
+          <td>{{paginator.next}}</td>
+        </tr>
+        <tr>
+          <td>paginator.current_index </td>
+          <td>{{paginator.current_index }}</td>
+        </tr>
+        <tr>
+          <td> paginator.total_pages</td>
+          <td>{{ paginator.total_pages}}</td>
+        </tr>
+        <tr>
+          <td> paginator.pages</td>
+          <td>
+            {%- for page in paginator.pages %}
+              <ul>
+                <li>page.slug: {{page.slug}}</li>
+                <li>page.permalink: {{page.permalink}}</li>
+              </ul>
+            {% endfor %}
+          </td>
+        </tr>
+      </table>
+    {%- endif -%}
+
+{%- endmacro %}
