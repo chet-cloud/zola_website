@@ -19,12 +19,93 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="font.css?v=1.0">
+  <link rel="stylesheet" href="styles.css?v=1.0">
+  <script src="scripts.js"></script>
 </head>
 
 <body>
-  <!-- your content here... -->
-  <script src="js/scripts.js"></script>
+
+
+  <style>
+
+    .rightSideNav {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      overflow: hidden;
+      width: 0;
+      padding-left: 0;
+      background-color: black;
+    }
+
+    .rightSideNav_open {
+      width: 100%;
+    }
+
+    .rightSideNav a {
+      margin-bottom: 7px;
+      padding-left: 45px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      line-height: 30px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+    }
+
+    .main {
+       position: relative;
+       border: 1px red solid;
+    }
+    .main_open {
+      margin-right: 60px;
+    }
+    .main span {
+      position: absolute;
+      top: 5px;
+      right: 2px;
+    }
+
+  </style>
+
+  <script>
+ 
+    function openNav(){
+      document.querySelector(".rightSideNav").classList.toggle("rightSideNav_open")
+      document.querySelector(".main").classList.toggle("main_open")
+    }
+
+  </script>
+  
+  <div class="main">
+
+    <section class="rightSideNav">
+      <a href="#">Home</a>
+      <a href="#">Lifestyle</a>
+      <a href="#">Culture</a>
+      <a href="#">Art & Photography</a>
+      <a href="#">Environment</a>
+      <a href="#">Shopping</a>
+      <a href="#">Events</a>
+    </section>
+
+    <section class="menu">
+      <h2>rightSideNav Push Example</h2>
+      <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    </section>
+
+    <section class="leftSide">
+      <a href="#">Home</a>
+    </section>
+
+  </div>
+
+
+
 </body>
 </html>
