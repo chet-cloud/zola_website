@@ -70,6 +70,20 @@
       right: 2px;
     }
 
+    section {
+      display: flex;
+      flex-direction: row;
+      width: 263px;
+    }
+    .div1 {
+      border: 1px red solid;
+      width: 233px;
+    }
+    .div2 {
+      border: 1px red solid;
+      width: 45px;
+    }
+
   </style>
 
   <script>
@@ -80,9 +94,10 @@
     }
 
   </script>
-  
-  <div class="main">
 
+  {# https://www.accessibility-developer-guide.com/examples/hiding-elements/visually/ #}
+  
+  {# <div class="main">
     <section class="rightSideNav">
       <a href="#">Home</a>
       <a href="#">Lifestyle</a>
@@ -92,19 +107,20 @@
       <a href="#">Shopping</a>
       <a href="#">Events</a>
     </section>
-
     <section class="menu">
       <h2>rightSideNav Push Example</h2>
       <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     </section>
-
     <section class="leftSide">
       <a href="#">Home</a>
-    </section>
+    </section> 
+  </div> #}
 
-  </div>
-
+  <section>
+    <div class="div1">aaa</div>
+    <div class="div2">bbb</div>
+  </section>
 
 
 </body>
