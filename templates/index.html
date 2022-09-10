@@ -71,17 +71,37 @@
     }
 
     section {
-      display: flex;
-      flex-direction: row;
-      width: 263px;
+      /* display: flex;
+      flex-direction: row; */
+      width: 100%;
     }
     .div1 {
       border: 1px red solid;
-      width: 233px;
+      width: 100%;
+      position: fixed;
+
+      right:0px;
+      transition: left 1s;
     }
+
+    .div1_open {
+      right:300px;
+      transition: right 1s;
+    }
+
+
     .div2 {
-      border: 1px red solid;
-      width: 45px;
+      border: 1px blue solid;
+      width: 100%;
+      position: fixed;
+
+      transition: left 1s;
+      left: 400px;
+    }
+
+    .div2_open {
+      left: 100px;
+      transition: left 1s;
     }
 
   </style>
@@ -89,8 +109,8 @@
   <script>
  
     function openNav(){
-      document.querySelector(".rightSideNav").classList.toggle("rightSideNav_open")
-      document.querySelector(".main").classList.toggle("main_open")
+      document.querySelector(".div1").classList.toggle("div1_open")
+      document.querySelector(".div2").classList.toggle("div2_open")
     }
 
   </script>
@@ -117,7 +137,7 @@
     </section> 
   </div> #}
 
-  <section>
+  <section onclick="openNav()">
     <div class="div1">aaa</div>
     <div class="div2">bbb</div>
   </section>
