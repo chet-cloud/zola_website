@@ -70,6 +70,13 @@
       right: 2px;
     }
 
+
+
+
+
+    
+
+
     section {
       /* display: flex;
       flex-direction: row; */
@@ -104,6 +111,24 @@
       transition: left 1s;
     }
 
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(187, 52, 52, 0.5);
+      z-index: 2;
+      cursor: pointer;
+      display: none;
+    }
+    .overlay_open {
+      display: block;
+    }
+
+
   </style>
 
   <script>
@@ -111,6 +136,11 @@
     function openNav(){
       document.querySelector(".div1").classList.toggle("div1_open")
       document.querySelector(".div2").classList.toggle("div2_open")
+    }
+
+    function overlay() {
+      document.querySelector(".overlay").classList.toggle("overlay_open")
+      event.preventDefault();
     }
 
   </script>
@@ -137,11 +167,17 @@
     </section> 
   </div> #}
 
+
+  <div class="overlay" onclick="overlay()">
+    <div id="text">Overlay Text</div>
+  </div>
+
   <section onclick="openNav()">
-    <div class="div1">aaa</div>
+    <div class="div1">aaa<button onclick="overlay()">overlay</button></div>
     <div class="div2">bbb</div>
   </section>
 
+  
 
 </body>
 </html>
