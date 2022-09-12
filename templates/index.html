@@ -22,6 +22,12 @@
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="font.css?v=1.0">
   <link rel="stylesheet" href="styles.css?v=1.0">
+
+  <!-- our project just needs Font Awesome Solid + Brands -->
+  <link href="/css/fontawesome.css" rel="stylesheet">
+  <link href="/css/brands.css" rel="stylesheet">
+  <link href="/css/solid.css" rel="stylesheet">
+
   <script src="scripts.js"></script>
 </head>
 
@@ -30,23 +36,191 @@
 
   <style>
 
-    .rightSideNav {
+    .main {
+      border: 1px red solid;
+      width: 100%;
+      position: fixed;
+      background-color: black;
+
+      right:0px;
+      transition: left 1s;
+    }
+
+    .main_open {
+      right:300px;
+      transition: right 1s;
+    }
+
+    .right_menu {
+      border: 1px blue solid;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+
+      transition: left 1s;
+      left: 400px;
+    }
+
+    .right_menu_open {
+      left: 100px;
+      transition: left 1s;
+    }
+
+    .left_search {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      cursor: pointer;
+      display: none;
+    }
+
+    .left_search_container {
+      /* center children */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .left_search_container * {
+      border: 0px blue solid;
+    }
+
+    .left_search_open {
+      display: block;
+    }
+
+    .left_search .search_result   {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left_search .search_result article {
+      margin-bottom: 45px;
+    }
+
+    .left_search .search_result article::after {
+      content: "";
+      clear: both;
+    }
+
+    .left_search .search_result article .mask{
+      float: left;
+      height: 100%;
+    }
+
+    .left_search .search_result article .mask a{
+      height: 100%;
+      display: inline-block;
+    }
+
+    .left_search .search_result article img {
+      width: 65px;
+      height: auto;
+
+      margin: 0;
+      position: relative;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    .left_search .search_result article .body {
+      padding-left: 85px;
+      padding-right: 10px;
+    }
+
+    .left_search .search_result article .title a {
+      font-family: 'Playfair Display', sans-serif;
+      text-decoration-line: none;
+      font-size: 15px;
+      color:rgb(17, 17, 17);
+      font-weight: 400;
+      line-height: 18px;
+    }
+
+    .left_search .search_result article .title {
+      margin-top: 10px;
+    }
+
+    .left_search .search_result article .tags a {
+      font-size: 12px;
+      text-decoration-line: none;
+      color: rgb(136,136,136);
+      line-height: 20px;
+    }
+    .left_search .search_result article time {
+      font-size: 12px;
+      text-decoration-line: none;
+      color: rgb(136,136,136);
+    }
+
+    .left_search .search_count {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .left_search .search_input {
+      text-align: center; 
+      font-size: 30px;
+      color: rgb(17, 17, 17);
+
+      height: 75px;
+      width: 100%;
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: rgb(228, 228, 228);
+    }
+
+    .left_search .search_hint *{
+      color: rgb(68,68,68);
+      font-size: 12px;
+      margin-right: 10px;
+      line-height: 20px;
+    }
+
+    .left_search .search_hint .keywords a::before{
+      content: "#";
+    }
+
+    .left_search .search_more {
+      font-family: 'Open Sans', sans-serif;
+      background-color: black;
+      font-size: 12px;
+      line-height: 40px;
+      color: white;
+      width: 180px;
+      height: 40px;
+      text-align: center;
+    }
+
+    .left_search .search_more:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .right_menu_container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
 
       overflow: hidden;
-      width: 0;
-      padding-left: 0;
       background-color: black;
+      height: 100%;
     }
 
-    .rightSideNav_open {
-      width: 100%;
-    }
-
-    .rightSideNav a {
+    .right_menu_container a {
       margin-bottom: 7px;
       padding-left: 45px;
       text-decoration: none;
@@ -57,98 +231,165 @@
       font-weight: 400;
     }
 
-    .main {
-       position: relative;
-       border: 1px red solid;
-    }
-    .main_open {
-      margin-right: 60px;
-    }
-    .main span {
-      position: absolute;
-      top: 5px;
-      right: 2px;
-    }
-
-
-
-
-
-    
-
-
-    section {
-      /* display: flex;
-      flex-direction: row; */
-      width: 100%;
-    }
-    .div1 {
-      border: 1px red solid;
-      width: 100%;
-      position: fixed;
-
-      right:0px;
-      transition: left 1s;
-    }
-
-    .div1_open {
-      right:300px;
-      transition: right 1s;
-    }
-
-
-    .div2 {
+    .main *{
       border: 1px blue solid;
+    }
+
+    .main_container {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      color: white;
+    }
+
+    .main_container div {
+      padding: 10px 20px 10px 20px;
+    } 
+
+    .main_container .logo img {
       width: 100%;
-      position: fixed;
-
-      transition: left 1s;
-      left: 400px;
+      height: auto;
     }
-
-    .div2_open {
-      left: 100px;
-      transition: left 1s;
-    }
-
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(187, 52, 52, 0.5);
-      z-index: 2;
-      cursor: pointer;
-      display: none;
-    }
-    .overlay_open {
-      display: block;
-    }
-
 
   </style>
 
   <script>
- 
-    function openNav(){
-      document.querySelector(".div1").classList.toggle("div1_open")
-      document.querySelector(".div2").classList.toggle("div2_open")
+    function toggleNav(){
+      document.querySelector(".main").classList.toggle("main_open")
+      document.querySelector(".right_menu").classList.toggle("right_menu_open")
     }
-
-    function overlay() {
-      document.querySelector(".overlay").classList.toggle("overlay_open")
+    function toggleSearch() {
+      document.querySelector(".left_search").classList.toggle("left_search_open")
       event.preventDefault();
     }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      //toggleSearch()
+    });
+    
   </script>
 
-  {# https://www.accessibility-developer-guide.com/examples/hiding-elements/visually/ #}
+  <div class="left_search">
+
+    <div class="left_search_container">
+
+      <input class="search_input" type="text" placeholder="Search"/>
+
+      <div class="search_hint">
+        <div class="keywords">
+          <a>Downtown Winnipeg</a>
+          <a>Winnipeg Apartments</a>
+          <a>Apartment Living</a>
+          <a>Apartment Building in Downtown Winnipeg</a>
+          <a>Downtown Apartments</a>
+        </div>
+        <div>
+            Start typing to see results or hit ESC to close
+        </div>
+      </div>
   
-  {# <div class="main">
-    <section class="rightSideNav">
+      <div class="search_count">
+        104 results for what
+      </div>
+  
+      <div class="search_result">
+  
+        <article>
+          <div class="mask">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
+              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
+              class="attachment-thumbnail size-thumbnail wp-post-image" 
+              alt="" loading="lazy" 
+              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            </a>
+          </div>
+          <div class="body"> 
+            <div class="tags">
+              <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
+              <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
+              <a href="https://livingat300main.ca/category/culture/" class="cat">Culture</a>
+              <a href="https://livingat300main.ca/category/downtown-events/" class="cat">Downtown Events</a>
+              <a href="https://livingat300main.ca/category/lifestyle/" class="cat">Lifestyle</a>
+            </div>
+            <span class="byline-part date">
+              <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23, 2022</time>
+            </span>
+            <div class="title">
+              <a href="https://livingat300main.ca/whats-on-the-docket-for-downtown-winnipeg-in-2019/">
+                What’s on the Docket for Downtown Winnipeg in 2019?
+              </a>
+            </div>
+          </div>
+        </article>
+  
+        <article>
+          <div class="mask">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
+              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
+              class="attachment-thumbnail size-thumbnail wp-post-image" 
+              alt="" loading="lazy" 
+              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            </a>
+          </div>
+          <div class="body"> 
+            <div class="tags">
+              <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
+              <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
+              <a href="https://livingat300main.ca/category/culture/" class="cat">Culture</a>
+              <a href="https://livingat300main.ca/category/downtown-events/" class="cat">Downtown Events</a>
+              <a href="https://livingat300main.ca/category/lifestyle/" class="cat">Lifestyle</a>
+              <span class="byline-part date">
+                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23, 2022</time>
+              </span>
+            </div>
+            <div class="title">
+              <a href="https://livingat300main.ca/whats-on-the-docket-for-downtown-winnipeg-in-2019/">
+                What’s on the Docket for Downtown Winnipeg in 2019?
+              </a>
+            </div>
+          </div>
+        </article>
+  
+        <article>
+          <div class="mask">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
+              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
+              class="attachment-thumbnail size-thumbnail wp-post-image" 
+              alt="" loading="lazy" 
+              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            </a>
+          </div>
+          <div class="body"> 
+            <div class="tags">
+              <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
+              <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
+              <a href="https://livingat300main.ca/category/culture/" class="cat">Culture</a>
+              <a href="https://livingat300main.ca/category/downtown-events/" class="cat">Downtown Events</a>
+              <a href="https://livingat300main.ca/category/lifestyle/" class="cat">Lifestyle</a>
+              <span class="byline-part date">
+                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23, 2022</time>
+              </span>
+            </div>
+            <div class="title">
+              <a href="https://livingat300main.ca/whats-on-the-docket-for-downtown-winnipeg-in-2019/">
+                What’s on the Docket for Downtown Winnipeg in 2019?
+              </a>
+            </div>
+          </div>
+        </article>
+  
+      </div>
+  
+      <div class="search_more">
+        SEE ALL RESULTS 
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="right_menu">
+    <div class="right_menu_container">
       <a href="#">Home</a>
       <a href="#">Lifestyle</a>
       <a href="#">Culture</a>
@@ -156,28 +397,25 @@
       <a href="#">Environment</a>
       <a href="#">Shopping</a>
       <a href="#">Events</a>
-    </section>
-    <section class="menu">
-      <h2>rightSideNav Push Example</h2>
-      <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-    </section>
-    <section class="leftSide">
-      <a href="#">Home</a>
-    </section> 
-  </div> #}
-
-
-  <div class="overlay" onclick="overlay()">
-    <div id="text">Overlay Text</div>
+    </div>
   </div>
 
-  <section onclick="openNav()">
-    <div class="div1">aaa<button onclick="overlay()">overlay</button></div>
-    <div class="div2">bbb</div>
-  </section>
+  <div class="main">
+    <div class="main_container">
+      <div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="logo">
+        <img src="logo-small.jpg" />
+      </div>
+      <div>
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
 
-  
+
+  </div>
+
 
 </body>
 </html>
