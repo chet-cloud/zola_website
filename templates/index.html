@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,19 +36,18 @@
 
 
   <style>
-
     .main {
       border: 1px red solid;
       width: 100%;
       position: fixed;
       background-color: black;
 
-      right:0px;
-      transition: left 1s;
+      right: 0px;
+      transition: right 1s;
     }
 
     .main_open {
-      right:300px;
+      /* right: 300px; */
       transition: right 1s;
     }
 
@@ -57,12 +57,14 @@
       height: 100%;
       position: fixed;
 
+      z-index: 2;
       transition: left 1s;
-      left: 400px;
+      display: none;
     }
 
     .right_menu_open {
-      left: 100px;
+      display: block;
+      left: 60px;
       transition: left 1s;
     }
 
@@ -74,9 +76,11 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 2;
+      z-index: 1;
       cursor: pointer;
       display: none;
+      opacity: .975;
+      background-color: white;
     }
 
     .left_search_container {
@@ -98,7 +102,7 @@
       display: block;
     }
 
-    .left_search .search_result   {
+    .left_search .search_result {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -114,12 +118,12 @@
       clear: both;
     }
 
-    .left_search .search_result article .mask{
+    .left_search .search_result article .mask {
       float: left;
       height: 100%;
     }
 
-    .left_search .search_result article .mask a{
+    .left_search .search_result article .mask a {
       height: 100%;
       display: inline-block;
     }
@@ -144,7 +148,7 @@
       font-family: 'Playfair Display', sans-serif;
       text-decoration-line: none;
       font-size: 15px;
-      color:rgb(17, 17, 17);
+      color: rgb(17, 17, 17);
       font-weight: 400;
       line-height: 18px;
     }
@@ -156,13 +160,14 @@
     .left_search .search_result article .tags a {
       font-size: 12px;
       text-decoration-line: none;
-      color: rgb(136,136,136);
+      color: rgb(136, 136, 136);
       line-height: 20px;
     }
+
     .left_search .search_result article time {
       font-size: 12px;
       text-decoration-line: none;
-      color: rgb(136,136,136);
+      color: rgb(136, 136, 136);
     }
 
     .left_search .search_count {
@@ -171,7 +176,7 @@
     }
 
     .left_search .search_input {
-      text-align: center; 
+      text-align: center;
       font-size: 30px;
       color: rgb(17, 17, 17);
 
@@ -182,14 +187,14 @@
       border-color: rgb(228, 228, 228);
     }
 
-    .left_search .search_hint *{
-      color: rgb(68,68,68);
+    .left_search .search_hint * {
+      color: rgb(68, 68, 68);
       font-size: 12px;
       margin-right: 10px;
       line-height: 20px;
     }
 
-    .left_search .search_hint .keywords a::before{
+    .left_search .search_hint .keywords a::before {
       content: "#";
     }
 
@@ -231,7 +236,7 @@
       font-weight: 400;
     }
 
-    .main *{
+    .main * {
       border: 1px blue solid;
     }
 
@@ -244,36 +249,252 @@
 
     .main_container div {
       padding: 10px 20px 10px 20px;
-    } 
+    }
 
     .main_container .logo img {
       width: 100%;
       height: auto;
     }
 
+    .main-desktop img {
+      display: block;
+      margin: auto;
+      width: 384px;
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+
+
+
+    .desktop_menu_container a {
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: rgb(30, 30, 30);
+      padding: 20px 7px 20px 7px;
+    }
+
+    .desktop_menu_container img {
+      width: 183px;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      display: none;
+    }
+
+
+    @media screen and (min-width: 768px) {
+
+      .left_search,
+      .right_menu,
+      .main {
+        display: none;
+      }
+
+      .main-desktop,
+      .desktop_menu_container {
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .main {
+        display: block;
+      }
+
+      .main-desktop,
+      .desktop_menu_container {
+        display: none;
+      }
+    }
+
+    .desktop_menu_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 3px rgb(10, 10, 10) solid;
+      background-color: white;
+      /* sticky menu */
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+    }
+
+    .body *{
+      
+    }
+
+
+    .testimonials {
+      padding: 16px;
+      line-height: 60px;
+      display: inline-block;
+      min-width: 400px;
+    }
+    
+    .testimonials p {
+      line-height: 60px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .testimonials a {
+      text-decoration: none;
+    }
+
+    .testimonials::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .testimonials img {
+      float: left;
+      margin-right: 20px;
+      border-radius: 50%;
+    }
+
+    .img-board * {
+      border:1px red solid;
+    }
+
+    .img-board {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+
+    .img-board .a{
+      background-color: aqua;
+      flex-basis: 100%;
+      min-height: 747px;
+    }
+
+    .img-board .b{
+      flex-basis: 100%;
+      height: 373px;
+    }
+
+    .img-board .c{
+      height: 373px;
+    }
+
+    .img-board .d{
+      display: flex;
+      flex-wrap: nowrap;
+      height: 373px;
+    }
+
+    .img-board .d div{
+      flex-basis: 50%;
+    }
+
+    @media screen and (min-width: 768px) {
+      .img-board {
+        flex-direction: row;
+      }
+    }
+
+    .list * {
+      border: 1px blue solid;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .list .left-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .list .post {
+      height: 200px;
+      flex-basis: 100%;
+    }
+
+    @media screen and (min-width: 480px) {
+      .list .post:not(:nth-child(3n)) {
+        flex-basis: 49%;
+      }
+    }
+
+    .list .right-list div {
+      height: 200px;
+    }
+
+
+    @media screen and (min-width: 768px) {
+      .list {
+        flex-wrap: nowrap;
+        flex-direction: row;
+      }
+      .left-list {
+        flex-basis: 70%;
+      }
+      .right-list {
+        flex-basis: 30%;
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        top: 60px;
+        align-self: flex-start; /* <-- this is the fix */
+      }
+    }
+
   </style>
 
   <script>
-    function toggleNav(){
+    function toggleNav() {
       document.querySelector(".main").classList.toggle("main_open")
       document.querySelector(".right_menu").classList.toggle("right_menu_open")
     }
     function toggleSearch() {
       document.querySelector(".left_search").classList.toggle("left_search_open")
-      event.preventDefault();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      //toggleSearch()
+      
+      let imgStyle = document.querySelector(".desktop_menu_container img").style;
+      window.addEventListener('scroll', () => {
+        let scrollPosition = Math.round(window.scrollY);
+        console.log(scrollPosition)
+        if (scrollPosition >= 150) {
+          imgStyle.display = "block"
+        } else {
+          imgStyle.display = "none"
+        }
+      });
+
+
+
+      /** 
+      let parent = document.querySelector('.right-list').parentElement;
+      while (parent) {
+          const hasOverflow = getComputedStyle(parent).overflow;
+          if (hasOverflow !== 'visible') {
+              console.log(hasOverflow, parent);
+          }
+          parent = parent.parentElement;
+      }
+      **/
+
     });
-    
+
+
+
+
   </script>
 
   <div class="left_search">
 
     <div class="left_search_container">
 
-      <input class="search_input" type="text" placeholder="Search"/>
+      <input class="search_input" type="text" placeholder="Search" />
 
       <div class="search_hint">
         <div class="keywords">
@@ -284,26 +505,28 @@
           <a>Downtown Apartments</a>
         </div>
         <div>
-            Start typing to see results or hit ESC to close
+          Start typing to see results or hit ESC to close
         </div>
       </div>
-  
+
       <div class="search_count">
         104 results for what
       </div>
-  
+
       <div class="search_result">
-  
+
         <article>
           <div class="mask">
-            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
-              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
-              class="attachment-thumbnail size-thumbnail wp-post-image" 
-              alt="" loading="lazy" 
-              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/"
+              class="mask-img">
+              <img width="100" height="100"
+                src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg"
+                class="attachment-thumbnail size-thumbnail wp-post-image" alt="" loading="lazy"
+                srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w"
+                sizes="(max-width: 100px) 100vw, 100px">
             </a>
           </div>
-          <div class="body"> 
+          <div class="body">
             <div class="tags">
               <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
               <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
@@ -321,17 +544,19 @@
             </div>
           </div>
         </article>
-  
+
         <article>
           <div class="mask">
-            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
-              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
-              class="attachment-thumbnail size-thumbnail wp-post-image" 
-              alt="" loading="lazy" 
-              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/"
+              class="mask-img">
+              <img width="100" height="100"
+                src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg"
+                class="attachment-thumbnail size-thumbnail wp-post-image" alt="" loading="lazy"
+                srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w"
+                sizes="(max-width: 100px) 100vw, 100px">
             </a>
           </div>
-          <div class="body"> 
+          <div class="body">
             <div class="tags">
               <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
               <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
@@ -339,7 +564,8 @@
               <a href="https://livingat300main.ca/category/downtown-events/" class="cat">Downtown Events</a>
               <a href="https://livingat300main.ca/category/lifestyle/" class="cat">Lifestyle</a>
               <span class="byline-part date">
-                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23, 2022</time>
+                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23,
+                  2022</time>
               </span>
             </div>
             <div class="title">
@@ -349,17 +575,19 @@
             </div>
           </div>
         </article>
-  
+
         <article>
           <div class="mask">
-            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/" class="mask-img">
-              <img width="100" height="100" src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg" 
-              class="attachment-thumbnail size-thumbnail wp-post-image" 
-              alt="" loading="lazy" 
-              srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px">
+            <a href="https://livingat300main.ca/wp-event/the-dark-eighties-halloween-party-in-winnipeg/"
+              class="mask-img">
+              <img width="100" height="100"
+                src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg"
+                class="attachment-thumbnail size-thumbnail wp-post-image" alt="" loading="lazy"
+                srcset="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-100x100.jpg 100w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-293x293.jpg 293w, https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/10252_image_289430694_3271102523171404_8792148485379595860_n-390x390.jpg 390w"
+                sizes="(max-width: 100px) 100vw, 100px">
             </a>
           </div>
-          <div class="body"> 
+          <div class="body">
             <div class="tags">
               <a href="https://livingat300main.ca/category/300-main/" class="cat">300 Main</a>
               <a href="https://livingat300main.ca/category/adventure/" class="cat">Adventure</a>
@@ -367,7 +595,8 @@
               <a href="https://livingat300main.ca/category/downtown-events/" class="cat">Downtown Events</a>
               <a href="https://livingat300main.ca/category/lifestyle/" class="cat">Lifestyle</a>
               <span class="byline-part date">
-                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23, 2022</time>
+                <time class="entry-date published dateCreated" datetime="2022-08-23T20:47:43+00:00">August 23,
+                  2022</time>
               </span>
             </div>
             <div class="title">
@@ -377,11 +606,11 @@
             </div>
           </div>
         </article>
-  
+
       </div>
-  
+
       <div class="search_more">
-        SEE ALL RESULTS 
+        SEE ALL RESULTS
       </div>
 
     </div>
@@ -398,24 +627,139 @@
       <a href="#">Shopping</a>
       <a href="#">Events</a>
     </div>
-  </div>
+  </div> 
 
   <div class="main">
     <div class="main_container">
-      <div>
+      <div onclick="toggleSearch()">
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
       <div class="logo">
         <img src="logo-small.jpg" />
       </div>
-      <div>
+      <div onclick="toggleNav()">
         <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main-desktop">
+    <img src="logo-small.jpg" />
+  </div>
+
+  <div class="desktop_menu_container">
+    <img src="logo-small.jpg" />
+    <a href="#">Home</a>
+    <a href="#">Lifestyle</a>
+    <a href="#">Culture</a>
+    <a href="#">Art & Photography</a>
+    <a href="#">Environment</a>
+    <a href="#">Shopping</a>
+    <a href="#">Events</a>
+  </div>
+
+
+
+  <div class="body">
+
+    <div class="img-board">
+      <div class="a">11111111111111</div>
+      <div class="b">
+        <div class="c">22222222222222</div>
+        <div class="d">
+          <div>33333333333333</div>
+          <div>44444444444444</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="testimonials-container">
+
+      <div class="testimonials">
+        <a href="https://livingat300main.ca/space-ideas-for-small-gardens/" class="mask-img">
+          <img width="100" height="100"
+            src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/09/garden3-100x100.jpg">
+        </a>
+        <p>
+          <a href="https://livingat300main.ca/space-ideas-for-small-gardens/"> Space Ideas for Small Gardens</a>
+        </p>
+      </div>
+
+      <div class="testimonials">
+        <a href="https://livingat300main.ca/space-ideas-for-small-gardens/" class="mask-img">
+          <img width="100" height="100"
+            src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/09/garden3-100x100.jpg">
+        </a>
+        <p>
+          <a href="https://livingat300main.ca/space-ideas-for-small-gardens/"> Space Ideas for Small Gardens</a>
+        </p>
+      </div>
+
+      <div class="testimonials">
+        <a href="https://livingat300main.ca/space-ideas-for-small-gardens/" class="mask-img">
+          <img width="100" height="100"
+            src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/09/garden3-100x100.jpg">
+        </a>
+        <p>
+          <a href="https://livingat300main.ca/space-ideas-for-small-gardens/"> Space Ideas for Small Gardens</a>
+        </p>
+      </div>
+
+      <div class="testimonials">
+        <a href="https://livingat300main.ca/space-ideas-for-small-gardens/" class="mask-img">
+          <img width="100" height="100"
+            src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/09/garden3-100x100.jpg">
+        </a>
+        <p>
+          <a href="https://livingat300main.ca/space-ideas-for-small-gardens/"> Space Ideas for Small Gardens</a>
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="list">
+      <div class="left-list">
+          <div class="post">1</div>
+          <div class="post">2</div>
+              <div class="post">3</div>
+          <div class="post">4</div>
+          <div class="post">5</div>
+              <div class="post">6</div>
+          <div class="post">7</div>
+          <div class="post">8</div>
+          <div class="post">9</div>
+          <div class="post">10</div>
+              <div class="post">11</div>
+          <div class="post">12</div>
+          <div class="post">13</div>
+              <div class="post">14</div>
+          <div class="post">15</div>
+          <div class="post">16</div>
+          <div class="post">17</div>
+          <div class="post">18</div>   
+              <div class="post">19</div> 
+      </div>
+      <div class="right-list">
+        <div class="search">search</div>
+        <div class="about">about</div>
+        <div class="social-media">social-media</div>
+        <div class="link">link</div>
       </div>
     </div>
 
 
+
   </div>
+
+ 
+
+
 
 
 </body>
+
 </html>
