@@ -1,2 +1,9 @@
-{%- import "macros/macros.html" as macros %}
-{{- macros::info() }}
+{%- extends "base.html" %}
+
+{%- block body %}
+    {% include "include/title_post_board.html" %}
+    {% include "include/content_post.html" %}
+    {% include "include/social_buttons.html" %}
+    {% include "include/author.html" %}
+    {% include "include/related.html" %}
+{%- endblock body %}
