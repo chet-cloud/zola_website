@@ -1,16 +1,29 @@
 <style>
+    .title_post_board{
+        position: relative;
+    }
     .title_post_board img{
         width: 100%;
     }
     .title_post_board_container {
         border: 1px red solid;
-        position: relative;
+        position: absolute;
         text-align: center;
         background-color: white;
-        transform: translate(0,-100%);
         margin: 0 20px 0 20px;
         padding: 30px 15px 15px 15px;
         max-width: 780px;
+
+        left: 0%;
+        transform: translate(0%, -100%);
+    }
+
+    .title_post_board_img_container {
+        border: 1px red solid;
+        width: 100%;
+        height: 600px;
+        text-align: center;
+        overflow: hidden;
     }
 
     .title_post_board_tags *{
@@ -33,14 +46,18 @@
 
     @media screen and (min-width: 768px) {
       .title_post_board_container {
-        
+        min-width: 550px;
         margin: auto;
+        left: 50%;
+        transform: translate(-50%, -100%);
       }
     }
 
 </style>
 <div class="title_post_board">
-    <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/275864305_497564391750898_2848710138243712305_n.jpg">
+    <div class="title_post_board_img_container">
+        <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/275864305_497564391750898_2848710138243712305_n.jpg">
+    </div>
     <div class="title_post_board_container">
             <div class="title_post_board_tags">
                 <a>Culture</a>

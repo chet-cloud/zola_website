@@ -1,0 +1,57 @@
+<style>
+    .pagination_post {
+        padding: 45px 45px 45px 45px;
+        display: flex;
+        
+    }
+    .pagination_post a{
+        display: inline-block;
+        flex-grow: 1;
+    }
+    .pagination_post img {
+        width: 50px;
+        height: 50px;
+    }
+    .next div{
+        text-align: right;
+    }
+    .previous_img,.next_img {
+        position: relative;
+    }
+    .next_img img {
+        position:absolute;
+        left: 50%;
+        right: 50%;
+        transition: translate(50%,50%);
+    }
+    .previous_img img {
+        position:absolute;
+        left: 50%;
+        right: 50%;
+        transition: translate(-50%,-50%);
+    }
+</style>
+<div class="pagination_post">
+
+    <a class="previous_img">
+        <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/07/ergd-100x100.jpg">     
+    </a>
+
+    <a class="previous">
+        <div>
+            <p>Previous</p>
+            <p>Top 10 Summer Cocktails</p>
+        </div>
+    </a>
+
+    <a class="next">
+        <div>
+            <p>Next</p>
+            <p>Summer Smoothies</p>
+        </div>
+    </a>
+
+    <a class="next_img">
+        <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/08/blog3-100x100.png">
+    </a>
+</div>
