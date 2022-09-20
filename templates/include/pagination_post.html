@@ -2,11 +2,13 @@
     .pagination_post {
         padding: 45px 45px 45px 45px;
         display: flex;
-        
+        flex-direction: column;
     }
     .pagination_post a{
         display: inline-block;
         flex-grow: 1;
+        min-width: 70px;
+        height: 100px;
     }
     .pagination_post img {
         width: 50px;
@@ -16,20 +18,34 @@
         text-align: right;
     }
     .previous_img,.next_img {
+        display: block;
         position: relative;
     }
-    .next_img img {
+    .next_img img,.previous_img img  {
         position:absolute;
         left: 50%;
-        right: 50%;
-        transition: translate(50%,50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
-    .previous_img img {
-        position:absolute;
-        left: 50%;
-        right: 50%;
-        transition: translate(-50%,-50%);
+
+
+    .pagination_post a:nth-child(3) {order: 3;}
+    .pagination_post a:nth-child(4) {order: 4;}
+
+    @media screen and (min-width: 480px) {
+        .pagination_post {
+            flex-direction: row;
+        }
+        .pagination_post a:nth-child(3) {order: 4;}
+        .pagination_post a:nth-child(4) {order: 3;}
+
+        .next_img img,.previous_img img  {
+            -webkit-border-radius:50%;
+            -moz-border-radius:50%;
+            border-radius:50%;
+        }
     }
+
 </style>
 <div class="pagination_post">
 
@@ -44,6 +60,10 @@
         </div>
     </a>
 
+    <a class="next_img">
+        <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/08/blog3-100x100.png">
+    </a>
+
     <a class="next">
         <div>
             <p>Next</p>
@@ -51,7 +71,4 @@
         </div>
     </a>
 
-    <a class="next_img">
-        <img src="https://arwebstore.blob.core.windows.net/livingat300main-ca/2022/08/blog3-100x100.png">
-    </a>
 </div>
